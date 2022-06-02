@@ -8,6 +8,9 @@ node('jdk11-mvn3.8.4') {
     stage('test') {
         sh 'npm test'
     } 
+    stage('build') {
+        sh 'npm build'
+    }
 }
 
 
