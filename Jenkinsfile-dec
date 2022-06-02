@@ -21,6 +21,7 @@ pipeline{
         stage("build") {
             steps {
               sh "npm build"
+              withSonarQubeEnv('SONAR_9.4') 
               }
             }
         
