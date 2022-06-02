@@ -1,4 +1,4 @@
-node('jdk11-mvn3.6.3') {
+node('jdk11-mvn3.8.4') {
     stage('git') {
         git 'https://github.com/bhargavi-vaduguri/js-e2e-express-server.git'
     }
