@@ -3,12 +3,12 @@ pipeline{
          label 'jdk11-mvn3.8.4'
           }
     stages{
-        stage('clone the git repo'){
+        stage('scm'){
             steps{
                 git branch: 'main', url: 'https://github.com/bhargavi-vaduguri/js-e2e-express-server.git'
             }
         }
-        stage('install the dependencies'){
+        stage('install'){
             steps{
                 sh "npm install"                 
             }
@@ -21,15 +21,12 @@ pipeline{
         
         stage("build") {
             steps {
-                sh "npm build"
-            }
-        }
-        
-        stage("pack") {
-            steps {
-                sh "npm pack"
+                withSonarQubeEnv(installationName: 'SONAR_9.4', envOnly: true, credentialsId: 'SONAR_TOKEN') {
+                    sh "npm build"
+                    echo "${env.SONAR_HOST_URL}"
+                }    
             }
         }
         
     }
-}
+}    
