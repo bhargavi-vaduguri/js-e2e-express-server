@@ -22,7 +22,7 @@ pipeline{
         stage("build") {
             steps {
                 withSonarQubeEnv(installationName: 'SONAR_9.4', envOnly: true, credentialsId: 'SONAR_TOKEN') {
-                    sh "npm build"
+                    sh "npm run sonar"
                     echo "${env.SONAR_HOST_URL}"
                 }    
             }
